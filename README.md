@@ -37,7 +37,7 @@ La première étape consiste à récupérer le [repo Gitlab fournit](https://git
 Pour ce faire, utilisez les commandes suivantes :  
 `git clone https://gitlab.com/Glandalf/web-project-sample`
 
-![[1.png]]
+![img1](/img/1.png)
 
 Vous verrez que le projet a bien été cloné et que le dossier `web-project-sample` est présent.
 
@@ -49,15 +49,15 @@ Une fois la création du dépôt terminée, nous devons pointer vers ce dépôt 
 
 Une fois cela réalisé, vous devriez voir le projet téléchargé dans votre dépôt.
 
-![[2.png]]
+![img2](/img/2.png)
 
 Nous avons donc réussi à configurer correctement notre dépôt. Nous devons maintenant ajouter l'utilisateur `@Glandalf` en tant que `maintainer` afin que notre super intervenant puisse accéder au dépôt.
 
 Pour ajouter un utilisateur avec le rôle `maintainer` : `Projet -> Members -> Invite Member`
 
-![[3.png]]
+![img3](/img/3.png)
 
-![[4.png]]
+![img4](/img/4.png)
 
 L'utilisateur Glandalf peut maintenant accéder à notre projet. 
 Le déploiement du `web-project-sample` a été abordé dans les prises de notes effectuées en cours, c'est pourquoi nous passerons ce chapitre dans ce compte rendu.
@@ -70,7 +70,7 @@ GitLab CI est un outil intégré dans GitLab qui automatise les processus de dé
 
 Pour ce faire, nous allons créer un fichier `.gitlab-ci.yml` qui affichera "Bonjour" dans un premier temps.
 
-![[5.png]]
+![img5](/img/5.png)
 
 Explication :
 
@@ -80,18 +80,18 @@ Explication :
 
 Pour tester que notre CI fonctionne correctement, nous allons pousser le fichier sur notre dépôt GitLab.
 
-![[6.png]]
+![img6](/img/6.png)
 
 Puis, pour tester que tout fonctionne comme prévu, allez dans l'onglet `Build -> Pipelines`.
 
-![[7.png]]
+![img7](/img/7.png)
 
 Nous pouvons voir que deux des trois jobs affichent une erreur. 
 En effet, vous devrez vérifier votre compte avec un numéro de téléphone pour pouvoir accéder aux fonctionnalités liées au CI de GitLab.
 
 Maintenant, pour vérifier que l'affichage du "Hello" fonctionne correctement, allez dans l'onglet `Build -> Jobs` et sélectionnez le dernier job affiché.
 
-![[8.png]]
+![img8](/img/8.png)
 
 Nous verrons bien l'affichage du "Hello", ce qui nous permet de conclure que le CI de GitLab interprète correctement l'exécution des étapes configurées dans le fichier `.gitlab-ci.yml`.
 ## Troisième étape
@@ -102,7 +102,7 @@ Pour ce faire, nous devrons tout d'abord créer l'image Docker en question (`Deb
 
 Tout d'abord, il nous faudra créer un fichier `Dockerfile` sans extension.
 
-![[9.png]]
+![img9](/img/9.png)
 
 Explication :
 
@@ -116,23 +116,23 @@ Avant de pousser ce fichier dans notre dépôt, nous allons tester notre image e
 
 Pour ce faire, exécutez : `docker build -t debian-python .` (le `.` indique que le Dockerfile se trouve dans le répertoire actuel).
 
-![[10.png]]
+![img10](/img/10.png)
 
 Nous pourrons afficher l'image créée avec la commande `docker images`.
 
-![[11.png]]
+![img11](/img/11.png)
 
 Maintenant, pour vérifier que notre image Docker fonctionne correctement, nous allons lancer un conteneur temporaire avec notre image. Le résultat attendu est l'affichage de la version de Python3.  
 Pour ce faire, utilisez : `docker run --rm debian-python3`.
 
-![[12.png]]
+![img12](/img/12.png)
 
 Maintenant que notre `Dockerfile` est prêt, il nous suffit de le pousser dans notre dépôt GitLab. Pour ce faire :  
 `git add Dockerfile`  
 `git commit -m "add dockerfile debian + python"`  
 `git push`
 
-![[13.png]]
+![img13](/img/13.png)
 
 Maintenant que nous avons notre `Dockerfile` sur notre dépôt, nous pouvons passer à l'étape suivante.
 
@@ -152,7 +152,7 @@ Pour cela, nous utiliserons celui fourni par GitLab, le `GitLab Container Regist
 
 Nous allons maintenant modifier notre fichier `.gitlab-ci.yml` comme suit :
 
-![[14.png]]
+![img14](/img/14.png)
 
 Explication :
 
@@ -166,7 +166,7 @@ Explication :
 Une fois le fichier de configuration du CI poussé, nous pouvons vérifier son fonctionnement de la même manière que pour le premier job créé :  
 `Build -> Jobs`
 
-![[15.png]]
+![img15](/img/15.png)
 
 Le job a bien été exécuté avec succès, et les variables d'environnement du CI ont bien fonctionné. 
 Notez que la configuration de `Python3` apparaît clairement dans les logs, ce qui confirme que c'est bien notre image.
@@ -175,7 +175,7 @@ Après l'exécution de ce pipeline, l'image sera disponible dans le **Container 
 
 Pour le vérifier, allez dans le service suivant : `Deploy -> Container Registry`
 
-![[16.png]]
+![img16](/img/16.png)
 
 Nous avons donc réalisé le build de l'image Docker et poussé l'image sur le Container Registry du projet.
 
@@ -187,7 +187,7 @@ L’analyse **SAST (Static Application Security Testing)** dans GitLab est un ou
 
 Pour ce faire, nous commencerons par créer un script Python vulnérable, qui sera notre fichier `malware.py` (nom discret avant tout).
 
-![[17.png]]
+![img17](/img/17.png)
 
 **Pourquoi ce script est vulnérable ?**  
 
@@ -197,7 +197,7 @@ Nous allons maintenant ajouter l'analyse **SAST** à notre pipeline. Heureusemen
 
 Pour ce faire, modifions le fichier `.gitlab-ci.yml` et ajoutons un job `stats` :
 
-![[18.png]]
+![img18](/img/18.png)
 
 Explication :
 
@@ -212,11 +212,11 @@ Maintenant, il nous suffit de pousser les fichiers dans notre dépôt :
 
 Nous constaterons que notre `Pipelines` a bien effectué deux jobs.
 
-![[19.png]]
+![img19](/img/19.png)
 
 Maintenant, allons consulter notre job `stats` pour vérifier ce que dit l'audit de sécurité.
 
-![[20.png]]
+![img20](/img/20.png)
 
 Nous constatons que notre `SAST` a bien identifié un problème dans le fichier `malware.py`. Il avertit que l’utilisation de `subprocess.check_output()` avec `shell=True` peut être dangereuse.
 
