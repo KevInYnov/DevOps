@@ -193,7 +193,7 @@ Pour ce faire, nous commencerons par créer un script Python vulnérable, qui se
 
 Parce qu'il utilise `subprocess` avec `shell=True` sans filtrer les entrées utilisateur. Cela peut permettre une **injection de commande**, qui sera détectée par un outil comme `Bandit`, utilisé par GitLab SAST pour Python.
 
-Nous allons maintenant ajouter l'analyse **SAST** à notre pipeline. Heureusement, GitLab fournit une intégration prête à l'emploi via ses templates CI/CD de sécurité.
+Nous allons maintenant ajouter l'analyse **SAST** à notre pipeline.
 
 Pour ce faire, modifions le fichier `.gitlab-ci.yml` et ajoutons un job `stats` :
 
