@@ -37,7 +37,7 @@ La première étape consiste à récupérer le [repo Gitlab fournit](https://git
 Pour ce faire, utilisez les commandes suivantes :  
 `git clone https://gitlab.com/Glandalf/web-project-sample`
 
-![img1](/img/1.png)
+![img1](./img/1.png)
 
 Vous verrez que le projet a bien été cloné et que le dossier `web-project-sample` est présent.
 
