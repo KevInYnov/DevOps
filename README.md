@@ -1,5 +1,5 @@
 
-# <center> Introduction </center>
+# Introduction
 
 Ce compte rendu porte sur le module DevOps.
 
